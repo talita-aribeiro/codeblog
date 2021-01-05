@@ -15,7 +15,7 @@ public class CodeblogServiceImpl implements CodeblogService {
 
     @Override
     public List<Post> findAll() {
-        return codeblogRepository.findAll();
+        return (List<Post>) codeblogRepository.findAll();
     }
 
     @Override
@@ -26,5 +26,9 @@ public class CodeblogServiceImpl implements CodeblogService {
     @Override
     public Post save(Post post) {
         return codeblogRepository.save(post);
+    }
+    @Override
+    public void deleteById(long id) {
+        codeblogRepository.deleteById(id);
     }
 }

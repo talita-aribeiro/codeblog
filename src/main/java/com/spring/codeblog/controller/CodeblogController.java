@@ -38,6 +38,13 @@ public class CodeblogController {
     public String getPostForm(){
         return "postForm";
     }
+    @RequestMapping(value = "/posts/{id}/delete" , method = RequestMethod.GET)
+    public String deletePost(@PathVariable("id") long id){
+        codeblogService.deleteById(id);
+        return "redirect:/posts";
+    }
+
+
     @RequestMapping(value = "/newpost" ,method = RequestMethod.POST)
     public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes){
         if (result.hasErrors()){
