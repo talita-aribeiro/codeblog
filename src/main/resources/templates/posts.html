@@ -10,6 +10,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1" style="front-weight: bold;">MyCodeBlog</span>
+            <a href="/newpost" class="btn btn-primary" role="button"> Novo Post </a>
         </div>
     </nav>
 </header>
@@ -28,7 +29,7 @@
                   <span th:text="${post.autor}" />
                     <span th:text="${post.data}" />
                 </p>
-                <a href="#">
+                <a th:href="${(#mvc.url('CC#getPostDetails').arg(0,post.id)).build()}">
                     <h4 class="card-title" style="font-weight:bold;color:black;padding-top:5px;"><span th:text="${post.titulo}" /> </h4>
                 </a>
                 <p class="card-text">
