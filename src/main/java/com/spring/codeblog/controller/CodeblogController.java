@@ -34,7 +34,7 @@ public class CodeblogController {
         mv.addObject("post",post);
         return mv;
     }
-    @RequestMapping(value = "/newpost" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/newpost", method=RequestMethod.GET)
     public String getPostForm(){
         return "postForm";
     }
@@ -43,7 +43,6 @@ public class CodeblogController {
         codeblogService.deleteById(id);
         return "redirect:/posts";
     }
-
 
     @RequestMapping(value = "/newpost" ,method = RequestMethod.POST)
     public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes){
@@ -54,5 +53,9 @@ public class CodeblogController {
         post.setData(LocalDate.now());
         codeblogService.save(post);
         return "redirect:/posts" ;
+    }
+    @RequestMapping(value = "/" , method = RequestMethod.GET)
+    public String redirectToPost(){
+        return "redirect:/posts";
     }
 }

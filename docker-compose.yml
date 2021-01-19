@@ -5,7 +5,20 @@ services:
     container_name: postgres_container
     image: postgres
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5433:5432"
+  app-server:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_SERVICE_ADMIN: ${ADMIN_USER}
+      SPRING_SERVICE_PASSWORD: ${ADMIN_PASSWORD}
+    depends_on:
+      - postgres
